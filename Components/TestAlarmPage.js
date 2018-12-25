@@ -1,5 +1,7 @@
 import React from 'react'
 import {View, Image, StyleSheet, Button} from 'react-native';
+import Torch from 'react-native-torch';
+import { Platform } from 'react-native';
 
 class TestAlarmPage extends React.Component {
 
@@ -13,12 +15,50 @@ class TestAlarmPage extends React.Component {
         ),
     };
 
-    componentDidMount() {
+    cameraAllowed=false;
+    testing = false;
 
+    async componentDidMount() {
+        // Not yet implemented for iOS
+        if (Platform.OS === 'android') {
+            this.cameraAllowed = await Torch.requestCameraPermission(
+                'Camera Permissions', // dialog title
+                'We require camera permissions to use the torch on the back of your phone.' // dialog body
+            );
+        }
     }
 
+    timeout(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async flash() {
+        if (this.cameraAllowed) {
+            // Launch a sequence of three brief flashes
+            for (let i=0; i<3; i++) {
+                console.log("Turning the torch on...");
+                Torch.switchState(true);
+                await this.timeout(500);
+                console.log("...then off !")
+                Torch.switchState(false);
+                await this.timeout(500);
+            }
+        } else {
+            console.log("Not allowed to use the torch.")
+        }
+        return null;
+    }
+
+    async runTest() {
+        await this.flash();
+    }
+
+
     testLight() {
-        console.log("Yo");
+        if (!this.testing) {
+            this.testing = true;
+            this.runTest().then( () => { this.testing = false; });
+        }
     }
 
     render() {
