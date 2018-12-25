@@ -7,7 +7,7 @@ import SettingsPage from '../Components/SettingsPage'
 import MainPage from '../Components/MainPage'
 import TestAlarmPage from '../Components/TestAlarmPage'
 
-const HamburgerNavigation = createDrawerNavigator(
+const drawerNavigator = createDrawerNavigator(
     {
         MainPage: {
             screen: MainPage,
@@ -21,11 +21,11 @@ const HamburgerNavigation = createDrawerNavigator(
     }, {}
 );
 
-const DrawerMenu = createAppContainer(HamburgerNavigation);
+const drawerContainer = createAppContainer(drawerNavigator);
 
-const mainStack = createStackNavigator({
+const mainStackNavigator = createStackNavigator({
     MainNavigation: {
-        screen: DrawerMenu,
+        screen: drawerContainer,
         navigationOptions: ({navigation}) => ({
             headerStyle: {backgroundColor: '#4C3E54'},
             title: 'Waky Baby',
@@ -41,9 +41,7 @@ const mainStack = createStackNavigator({
     }
 });
 
-const MainNavigator = createAppContainer(mainStack);
-
-
+const MainStackContainer = createAppContainer(mainStackNavigator);
 
 const styles = StyleSheet.create({
     icon: {
@@ -53,4 +51,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default MainNavigator
+export default MainStackContainer
