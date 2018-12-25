@@ -11,7 +11,7 @@ class SettingsPage extends React.Component {
                 style={[styles.icon, {tintColor: tintColor}]}
             />
         ),
-    }
+    };
 
     componentDidMount() {
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
 import Navigation from './Navigation/Navigation'
 
 export default class App extends React.Component {
@@ -9,6 +8,3 @@ export default class App extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-});

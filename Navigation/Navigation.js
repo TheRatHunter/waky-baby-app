@@ -19,9 +19,9 @@ const HamburgerNavigation = createDrawerNavigator(
             screen: TestAlarmPage,
         }
     }, {}
-)
+);
 
-const DrawerMenu = createAppContainer(HamburgerNavigation)
+const DrawerMenu = createAppContainer(HamburgerNavigation);
 
 const mainStack = createStackNavigator({
     MainNavigation: {
@@ -39,9 +39,9 @@ const mainStack = createStackNavigator({
                 </TouchableOpacity>
         })
     }
-})
+});
 
-const MainNavigator = createAppContainer(mainStack)
+const MainNavigator = createAppContainer(mainStack);
 
 
 
@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
         height: 30,
         marginLeft: 15,
     }
-})
+});
 
 export default MainNavigator
