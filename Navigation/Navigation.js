@@ -1,61 +1,39 @@
 // Navigation/Navigation.js
 
 import React from 'react'
-import { StyleSheet, Image } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation'
+import { StyleSheet, Image, Text } from 'react-native';
+import { createStackNavigator, createDrawerNavigator, createAppContainer, DrawerActions } from 'react-navigation'
 import SettingsPage from '../Components/SettingsPage'
 import MainPage from '../Components/MainPage'
 
-
-
-const navStackMain = createStackNavigator({
-    MainPage: { // Ici j'ai appelé la vue "Search" mais on peut mettre ce que l'on veut. C'est le nom qu'on utilisera pour appeler cette vue
-        screen: MainPage,
-        navigationOptions: {
-            title: 'Waky Baby'
-        }
-    }
-
-
-})
-
-const MainStackNavigator = createAppContainer(navStackMain)
-
-const navStackSettings = createStackNavigator({
-    Settings: { // Encore une fois j'ai mis le même nom que celui du component mais libre à vous de choisir un nom différent
-        screen: SettingsPage,
-        navigationOptions: {
-            title: 'Settings'
-        }
-    }
-})
-
-const SettingsStackNavigator = createAppContainer(navStackSettings)
-
-const HamburgerNavigation = createBottomTabNavigator(
+const HamburgerNavigation = createDrawerNavigator(
     {
         MainPage: {
-            screen: MainStackNavigator,
-            navigationOptions: {
-            }
+            screen: MainPage,
         },
         SettingsPage: {
-            screen: SettingsStackNavigator,
-            navigationOptions: {
-            }
+            screen: SettingsPage,
         }
-    },
-    {
-        tabBarOptions: {
-            activeBackgroundColor: '#DDDDDD',
-            inactiveBackgroundColor: '#FFFFFF',
-            showLabel: false,
-            showIcon: true
-        }
-    }
+    }, {}
 )
 
-const MainNavigator = createAppContainer(HamburgerNavigation)
+const DrawerMenu = createAppContainer(HamburgerNavigation)
+
+const mainStack = createStackNavigator({
+    MainNavigation: {
+        screen: DrawerMenu,
+        navigationOptions: ({navigation}) => ({
+            headerStyle: {backgroundColor: '#4C3E54'},
+            title: 'Welcome!',
+            headerTintColor: 'white',
+            headerLeft: <Text onPress={() => navigation.openDrawer()}>Menu</Text>,
+        })
+    }
+})
+
+const MainNavigator = createAppContainer(mainStack)
+
+
 
 const styles = StyleSheet.create({
     icon: {
@@ -63,6 +41,5 @@ const styles = StyleSheet.create({
         height: 30
     }
 })
-
 
 export default MainNavigator
