@@ -11,12 +11,11 @@ class MainPage extends React.Component {
                 style={[styles.icon, {tintColor: tintColor}]}
             />
         ),
-    };
+    }
 
-        componentDidMount() {
-            console.log("Opening drawer...");
-            this.props.navigation.openDrawer();
-        }
+    componentDidMount() {
+
+    }
 
     render() {
         return (

@@ -5,6 +5,7 @@ import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, createAppContainer } from 'react-navigation'
 import SettingsPage from '../Components/SettingsPage'
 import MainPage from '../Components/MainPage'
+import TestAlarmPage from '../Components/TestAlarmPage'
 
 const HamburgerNavigation = createDrawerNavigator(
     {
@@ -13,6 +14,9 @@ const HamburgerNavigation = createDrawerNavigator(
         },
         SettingsPage: {
             screen: SettingsPage,
+        },
+        TestPage: {
+            screen: TestAlarmPage,
         }
     }, {}
 )
