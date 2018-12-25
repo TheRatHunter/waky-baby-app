@@ -1,8 +1,8 @@
 // Navigation/Navigation.js
 
 import React from 'react'
-import { StyleSheet, Image, Text } from 'react-native';
-import { createStackNavigator, createDrawerNavigator, createAppContainer, DrawerActions } from 'react-navigation'
+import { StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { createStackNavigator, createDrawerNavigator, createAppContainer } from 'react-navigation'
 import SettingsPage from '../Components/SettingsPage'
 import MainPage from '../Components/MainPage'
 
@@ -24,9 +24,15 @@ const mainStack = createStackNavigator({
         screen: DrawerMenu,
         navigationOptions: ({navigation}) => ({
             headerStyle: {backgroundColor: '#4C3E54'},
-            title: 'Welcome!',
+            title: 'Waky Baby',
             headerTintColor: 'white',
-            headerLeft: <Text onPress={() => navigation.openDrawer()}>Menu</Text>,
+            headerLeft:
+                <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+                    <Image
+                        source={require('../Images/menu.png')}
+                        style={[styles.icon]}
+                        />
+                </TouchableOpacity>
         })
     }
 })
@@ -38,7 +44,8 @@ const MainNavigator = createAppContainer(mainStack)
 const styles = StyleSheet.create({
     icon: {
         width: 30,
-        height: 30
+        height: 30,
+        marginLeft: 15,
     }
 })
 
