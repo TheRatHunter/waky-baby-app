@@ -1,5 +1,8 @@
 const WBColors = {
-    WBPurple:"#4C3E54"
+    WBBar:"#1C2938",
+    WBBackground:"#15202B",
+    WBText:"#FFFFFF"
+    // Cool purple : #281C2B
 };
 
 export default WBColors

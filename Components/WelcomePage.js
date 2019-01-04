@@ -1,8 +1,14 @@
 import React from 'react'
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet, Button, Image} from 'react-native';
 import WBColors from "../Styles/Colors";
 
 class WelcomePage extends React.Component {
+
+    static navigationOptions = {
+        headerStyle: {backgroundColor: WBColors.WBBar},
+        title: 'Bienvenue !',
+        headerTintColor: 'white'
+    };
 
     componentDidMount() {
 
@@ -15,11 +21,11 @@ class WelcomePage extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Welcome !</Text>
+                <Text style={styles.title}>Bienvenue sur votre application WakyBaby !</Text>
                 <Button
                     onPress={() => this._goToNext()}
                     title="Suivant"
-                    color={WBColors.WBPurple}
+                    color={WBColors.WBBar}
                 />
             </View>
         )
@@ -30,15 +36,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'space-evenly',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: WBColors.WBBackground
     },
     title: {
         fontWeight: 'bold',
         fontSize: 35,
         flex: 0,
         flexWrap: 'wrap',
-        color: WBColors.WBPurple,
-        textAlign: 'center'
+        color: WBColors.WBText,
+        textAlign: 'center',
+        marginLeft: 10,
+        marginRight: 10
     }
 });
 

@@ -40,7 +40,7 @@ class TestAlarmPage extends React.Component {
                 console.log("Turning the torch on...");
                 Torch.switchState(true);
                 await this.timeout(500);
-                console.log("...then off !")
+                console.log("...then off !");
                 Torch.switchState(false);
                 await this.timeout(500);
             }
@@ -68,7 +68,7 @@ class TestAlarmPage extends React.Component {
                 <Button
                     onPress={() => this.testLight()}
                     title="Tester le réveil"
-                    color={WBColors.WBPurple}
+                    color={WBColors.WBBar}
                 />
             </View>
         )
@@ -83,14 +83,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'space-evenly',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: WBColors.WBBackground
     },
     title: {
         fontWeight: 'bold',
         fontSize: 35,
         flex: 0,
         flexWrap: 'wrap',
-        color: WBColors.WBPurple,
+        color: WBColors.WBText,
         textAlign: 'center'
     }
 });

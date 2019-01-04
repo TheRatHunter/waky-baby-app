@@ -35,14 +35,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'space-evenly',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: WBColors.WBBackground
     },
     title: {
         fontWeight: 'bold',
         fontSize: 35,
         flex: 0,
         flexWrap: 'wrap',
-        color: WBColors.WBPurple,
+        color: WBColors.WBText,
         textAlign: 'center'
     }
 });

@@ -29,7 +29,7 @@ class MainPage extends React.Component {
                 <Button
                     onPress={() => this.alarmProcess()}
                     title="Commencer la nuit"
-                    color={WBColors.WBPurple}
+                    color={WBColors.WBBar}
                 />
             </View>
         )
@@ -44,14 +44,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'space-evenly',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: WBColors.WBBackground
     },
     title: {
         fontWeight: 'bold',
         fontSize: 35,
         flex: 0,
         flexWrap: 'wrap',
-        color: WBColors.WBPurple,
+        color: WBColors.WBText,
         textAlign: 'center'
     }
 });

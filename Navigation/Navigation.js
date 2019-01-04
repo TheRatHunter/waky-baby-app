@@ -30,24 +30,14 @@ const mainStackNavigator = createStackNavigator(
     {
         WelcomePage: {
             screen: WelcomePage,
-            navigationOptions: ({navigation}) => ({
-                headerStyle: {backgroundColor: WBColors.WBPurple},
-                title: 'Bienvenue !',
-                headerTintColor: 'white'
-            })
         },
         ConnectionPage: {
             screen: ConnectionPage,
-            navigationOptions: ({navigation}) => ({
-                headerStyle: {backgroundColor: WBColors.WBPurple},
-                title: 'Connectez vous à votre Waky Baby ! !',
-                headerTintColor: 'white'
-            })
         },
         MainNavigation: {
             screen: drawerContainer,
             navigationOptions: ({navigation}) => ({
-                headerStyle: {backgroundColor: WBColors.WBPurple},
+                headerStyle: {backgroundColor: WBColors.WBBar},
                 title: 'Waky Baby',
                 headerTintColor: 'white',
                 headerLeft:
@@ -69,9 +59,6 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         marginLeft: 15,
-    },
-    stackNav: {
-        backgroundColor: WBColors.WBPurple
     }
 });
 
