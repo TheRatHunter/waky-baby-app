@@ -2,6 +2,7 @@ import React from 'react'
 import {View, Image, StyleSheet, Button} from 'react-native';
 import Torch from 'react-native-torch';
 import { Platform } from 'react-native';
+import WBColors from "../Styles/Colors";
 
 class TestAlarmPage extends React.Component {
 
@@ -67,7 +68,7 @@ class TestAlarmPage extends React.Component {
                 <Button
                     onPress={() => this.testLight()}
                     title="Tester le réveil"
-                    color="#4C3E54"
+                    color={WBColors.WBPurple}
                 />
             </View>
         )

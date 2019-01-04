@@ -1,5 +1,6 @@
 import React from 'react'
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, Button} from 'react-native';
+import WBColors from "../Styles/Colors";
 
 class MainPage extends React.Component {
 
@@ -17,10 +18,19 @@ class MainPage extends React.Component {
 
     }
 
+    alarmProcess() {
+
+    }
+
     render() {
         return (
             <View>
-                <Text>aaa</Text>
+                <Text>Tout est prêt !</Text>
+                <Button
+                    onPress={() => this.alarmProcess()}
+                    title="Commencer la nuit"
+                    color={WBColors.WBPurple}
+                />
             </View>
         )
     }

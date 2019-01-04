@@ -6,6 +6,9 @@ import { createStackNavigator, createDrawerNavigator, createAppContainer } from 
 import SettingsPage from '../Components/SettingsPage'
 import MainPage from '../Components/MainPage'
 import TestAlarmPage from '../Components/TestAlarmPage'
+import WelcomePage from "../Components/WelcomePage";
+import ConnectionPage from "../Components/ConnectionPage";
+import WBColors from "../Styles/Colors";
 
 const drawerNavigator = createDrawerNavigator(
     {
@@ -23,23 +26,41 @@ const drawerNavigator = createDrawerNavigator(
 
 const drawerContainer = createAppContainer(drawerNavigator);
 
-const mainStackNavigator = createStackNavigator({
-    MainNavigation: {
-        screen: drawerContainer,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: {backgroundColor: '#4C3E54'},
-            title: 'Waky Baby',
-            headerTintColor: 'white',
-            headerLeft:
-                <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-                    <Image
-                        source={require('../Images/menu.png')}
-                        style={[styles.icon]}
-                        />
-                </TouchableOpacity>
-        })
+const mainStackNavigator = createStackNavigator(
+    {
+        WelcomePage: {
+            screen: WelcomePage,
+            navigationOptions: ({navigation}) => ({
+                headerStyle: {backgroundColor: WBColors.WBPurple},
+                title: 'Welcome !',
+                headerTintColor: 'white'
+            })
+        },
+        ConnectionPage: {
+            screen: ConnectionPage,
+            navigationOptions: ({navigation}) => ({
+                headerStyle: {backgroundColor: WBColors.WBPurple},
+                title: 'Connect to your Waky Baby ! !',
+                headerTintColor: 'white'
+            })
+        },
+        MainNavigation: {
+            screen: drawerContainer,
+            navigationOptions: ({navigation}) => ({
+                headerStyle: {backgroundColor: WBColors.WBPurple},
+                title: 'Waky Baby',
+                headerTintColor: 'white',
+                headerLeft:
+                    <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+                        <Image
+                            source={require('../Images/menu.png')}
+                            style={[styles.icon]}
+                            />
+                    </TouchableOpacity>
+            })
+        }
     }
-});
+);
 
 const MainStackContainer = createAppContainer(mainStackNavigator);
 
@@ -48,6 +69,9 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         marginLeft: 15,
+    },
+    stackNav: {
+        backgroundColor: WBColors.WBPurple
     }
 });
 
