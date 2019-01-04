@@ -24,8 +24,8 @@ class MainPage extends React.Component {
 
     render() {
         return (
-            <View>
-                <Text>Tout est prêt !</Text>
+            <View style={styles.container}>
+                <Text style={styles.title}>Tout est prêt !</Text>
                 <Button
                     onPress={() => this.alarmProcess()}
                     title="Commencer la nuit"
@@ -41,6 +41,19 @@ const styles = StyleSheet.create({
         width: 24,
         height: 24,
     },
+    container: {
+        flex: 1,
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 35,
+        flex: 0,
+        flexWrap: 'wrap',
+        color: WBColors.WBPurple,
+        textAlign: 'center'
+    }
 });
 
 export default MainPage

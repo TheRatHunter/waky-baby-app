@@ -32,7 +32,7 @@ const mainStackNavigator = createStackNavigator(
             screen: WelcomePage,
             navigationOptions: ({navigation}) => ({
                 headerStyle: {backgroundColor: WBColors.WBPurple},
-                title: 'Welcome !',
+                title: 'Bienvenue !',
                 headerTintColor: 'white'
             })
         },
@@ -40,7 +40,7 @@ const mainStackNavigator = createStackNavigator(
             screen: ConnectionPage,
             navigationOptions: ({navigation}) => ({
                 headerStyle: {backgroundColor: WBColors.WBPurple},
-                title: 'Connect to your Waky Baby ! !',
+                title: 'Connectez vous à votre Waky Baby ! !',
                 headerTintColor: 'white'
             })
         },

@@ -14,8 +14,8 @@ class ConnectionPage extends React.Component {
 
     render() {
         return (
-            <View>
-                <Text>Connect to your WakyBaby Device !</Text>
+            <View style={styles.container}>
+                <Text style={styles.title}>Connect to your WakyBaby Device !</Text>
                 <Button
                     onPress={() => this._goToNext()}
                     title="Suivant"
@@ -27,7 +27,19 @@ class ConnectionPage extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
+    container: {
+        flex: 1,
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 35,
+        flex: 0,
+        flexWrap: 'wrap',
+        color: WBColors.WBPurple,
+        textAlign: 'center'
+    }
 });
 
 export default ConnectionPage

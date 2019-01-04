@@ -20,8 +20,8 @@ class SettingsPage extends React.Component {
 
     render() {
         return (
-            <View>
-                <Text>bbb</Text>
+            <View style={styles.container}>
+                <Text style={styles.title}>Paramètres</Text>
             </View>
         )
     }
@@ -32,6 +32,19 @@ const styles = StyleSheet.create({
         width: 24,
         height: 24,
     },
+    container: {
+        flex: 1,
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 35,
+        flex: 0,
+        flexWrap: 'wrap',
+        color: WBColors.WBPurple,
+        textAlign: 'center'
+    }
 });
 
 export default SettingsPage

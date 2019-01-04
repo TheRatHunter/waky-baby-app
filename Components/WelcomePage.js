@@ -14,8 +14,8 @@ class WelcomePage extends React.Component {
 
     render() {
         return (
-            <View>
-                <Text>Welcome !</Text>
+            <View style={styles.container}>
+                <Text style={styles.title}>Welcome !</Text>
                 <Button
                     onPress={() => this._goToNext()}
                     title="Suivant"
@@ -27,7 +27,19 @@ class WelcomePage extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
+    container: {
+        flex: 1,
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 35,
+        flex: 0,
+        flexWrap: 'wrap',
+        color: WBColors.WBPurple,
+        textAlign: 'center'
+    }
 });
 
 export default WelcomePage

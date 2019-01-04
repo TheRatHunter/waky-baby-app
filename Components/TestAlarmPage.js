@@ -82,9 +82,17 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
         alignItems: 'center'
     },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 35,
+        flex: 0,
+        flexWrap: 'wrap',
+        color: WBColors.WBPurple,
+        textAlign: 'center'
+    }
 });
 
 export default TestAlarmPage
