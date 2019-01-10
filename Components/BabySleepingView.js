@@ -2,11 +2,18 @@ import React from 'react'
 import {View, Text, StyleSheet, Button} from 'react-native';
 import WBColors from "../Styles/Colors";
 
+import {connect} from 'react-redux'
+
+
 class BabySleepingView extends React.Component {
 
 
 
     render() {
+      console.log(this.props.isBabySleeping)
+      if(!this.props.isBabySleeping){
+        this.props.babyAwake();
+      }
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Bébé dort bien !</Text>
@@ -46,4 +53,10 @@ const styles = StyleSheet.create({
     }
 });
 
-export default BabySleepingView
+const mapStateToProps = (state) => {
+  return {
+    isBabySleeping : state.babyIsSleeping
+  }
+}
+
+export default connect(mapStateToProps)(BabySleepingView)
