@@ -5,6 +5,9 @@ import AlarmOffView from "./AlarmOffView"
 import BabyAwakeView from "./BabyAwakeView";
 import BabySleepingView from "./BabySleepingView"
 
+import {connect} from 'react-redux'
+
+
 class MainPage extends React.Component {
 
     static navigationOptions = {
@@ -21,7 +24,8 @@ class MainPage extends React.Component {
         super(props);
         this.state = {
             isAlarmOn: false,
-            isBabySleeping: true
+            isBabySleeping: true,
+
         };
         this.turnOnAlarm = this.turnOnAlarm.bind(this);
         this.turnOffAlarm = this.turnOffAlarm.bind(this);
@@ -77,6 +81,7 @@ class MainPage extends React.Component {
         return (
             <View  style={styles.container}>
                 { this.renderChildren() }
+                <Text style={{color : WBColors.WBText}}>Le bebe est réveillé ? {this.props.isBabySleeping ? 'Oui' : 'Non'}</Text>
             </View>
 
         )
@@ -104,4 +109,11 @@ const styles = StyleSheet.create({
     }
 });
 
-export default MainPage
+
+const mapStateToProps = (state) => {
+  return {
+    isBabySleeping : state.babyIsSleeping
+  }
+}
+
+export default connect(mapStateToProps)(MainPage)

@@ -15,7 +15,7 @@ import {
   } from 'react-native';
 import WBColors from "../Styles/Colors";
 import BleManager from "react-native-ble-manager"
-
+import { connect } from 'react-redux'
 
 
 
@@ -35,6 +35,7 @@ class ConnectionPage extends React.Component {
     this.state = {
       scanning : false,
       scanned : false,
+      babyIsSleeping : 1,
       peripherals: new Map()
     }
 
@@ -81,7 +82,6 @@ class ConnectionPage extends React.Component {
       BleManager.start({showAlert: false})
       .then(() => {
         //Success
-        console.log("Module initialized");
       });
 
 
@@ -110,11 +110,9 @@ class ConnectionPage extends React.Component {
       BleManager.enableBluetooth()
       .then(() => {
         // Success code
-        console.log('The bluetooth is already enabled or the user confirm');
         if (!this.state.scanning) {
           this.setState({peripherals: new Map()});
           BleManager.scan([], 3, true).then((results) => {
-            console.log('Scanning...');
             this.setState({
               scanning:true,
               scanned : true
@@ -126,21 +124,17 @@ class ConnectionPage extends React.Component {
       })
       .catch((error) => {
         // Failure code
-        console.log('The user refuse to enable bluetooth');
       });
     }
 
     // Event Handler
     handleStopScan() {
-      console.log('Scan is stopped');
       this.setState({ scanning: false });
     }
 
     handleDiscoverPeripheral(peripheral){
-      console.log("Discover Interrupt");
       var peripherals = this.state.peripherals;
       if (!peripherals.has(peripheral.id)){
-        console.log('Got ble peripheral', peripheral);
         peripherals.set(peripheral.id, peripheral);
         this.setState({ peripherals })
       }
@@ -154,11 +148,15 @@ class ConnectionPage extends React.Component {
         peripherals.set(peripheral.id, peripheral);
         this.setState({peripherals});
       }
-      console.log('Disconnected from ' + data.peripheral);
     }
 
     handleUpdateValueForCharacteristic(data) {
-      console.log('Received data from ' + data.peripheral + ' characteristic ' + data.characteristic, data.value);
+      data.value[0] ? this.setState({babyIsSleeping : false}) : this.setState({babyIsSleeping : true})
+      const action = {type : "STORE_VALUE", value : this.state.babyIsSleeping}
+
+      this.props.dispatch(action)
+      console.log(this.state.babyIsSleeping);
+      //console.log('Received data from ' + data.peripheral + ' characteristic ' + data.characteristic, data.value);
     }
 
 
@@ -170,7 +168,6 @@ class ConnectionPage extends React.Component {
           BleManager.disconnect(peripheral.id)
             .then(() => {
               // Success code
-              console.log('Disconnected');
               })
               .catch((error) => {
               // Failure code
@@ -187,11 +184,9 @@ class ConnectionPage extends React.Component {
                   peripherals.set(peripheral.id, p);
                   this.setState({peripherals});
                 }
-                console.log('Connected to ' + peripheral.id);
                 BleManager.retrieveServices(peripheral.id)
                   .then((peripheralInfo) => {
                     // Success code
-                    console.log('Peripheral info:', peripheralInfo);
                     var service = '19B10000-E8F2-537E-4F6C-D104768A1214';
                     var switcCharac = '19B10001-E8F2-537E-4F6C-D104768A1214';
 
@@ -199,11 +194,18 @@ class ConnectionPage extends React.Component {
                     BleManager.startNotification(peripheral.id, service, switcCharac)
                     .then(() => {
                       // Success code
-                      console.log('Notification started');
                     })
                     .catch((error) => {
                       // Failure code
                       console.log(error);
+                      Alert.alert(
+                        'Mauvais Device',
+                        'Ce n\'est pas le Waky Device ! Déconnectez-vous puis connectez vous au device Waky Baby ! (Déconnection auto en cas de mauvais peut être impémenté plus tard)',
+                        [
+                          {text: 'OK', onPress: () => console.log('OK Pressed')},
+                        ],
+                        { cancelable: false }
+                      )
                     });
                   });
                 })
@@ -295,4 +297,10 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ConnectionPage
+const mapDispatchToProps = (dispatch) => {
+  return{
+    dispatch: (action) => {dispatch(action)}
+  }
+}
+
+export default connect( mapDispatchToProps)(ConnectionPage)
