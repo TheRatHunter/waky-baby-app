@@ -249,7 +249,7 @@ class ConnectionPage extends React.Component {
                     renderRow={(item) => {
                       const color = item.connected ? 'purple' : '#fff';
                       return (
-                        <TouchableHighlight onPress={() => this.connectAndSubscribe(item) }>
+                        <TouchableHighlight style={styles.listElement} onPress={() => this.connectAndSubscribe(item) }>
                           <View style={[styles.row, {backgroundColor: color}]}>
                             <Text style={{fontSize: 12, textAlign: 'center', color: '#333333', padding: 10}}>{item.name}</Text>
                             <Text style={{fontSize: 8, textAlign: 'center', color: '#333333', padding: 10}}>{item.id}</Text>
@@ -294,6 +294,9 @@ const styles = StyleSheet.create({
     texte:{
       color: WBColors.WBText,
       textAlign: 'center'
+    },
+    listElement: {
+        marginBottom: 10
     }
 });
 
